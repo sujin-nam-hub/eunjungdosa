@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>은정도사 · 귀여운 사주 & 커플 궁합</title>
+<style>
+  :root{
+    --pink:#ff8fab; --pink-d:#ff6f91; --pink-s:#ffe0e9;
+    --lav:#b79cf0; --lav-s:#ece3ff; --mint:#79dab0; --mint-s:#dcf7ec;
+    --yellow:#ffd36b; --cream:#fff8ef; --ink:#5b4a63; --sub:#a294ad; --line:#f0e6f2;
+    --wood:#57cf8b; --fire:#ff8f6b; --earth:#f0c04a; --metal:#b9c2cc; --water:#6bb8f0;
+    --b0:#f5a35a; --b1:#7fb4ef; --b2:#5fcf9a; --b3:#ff7a9c;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    background:linear-gradient(160deg,#fff0f6 0%,#f3ecff 55%,#eafaf3 100%);
+    background-attachment:fixed;margin:0;padding:20px 16px 60px;color:var(--ink);}
+  .wrap{max-width:600px;margin:0 auto;}
+  /* 헤더 & 마스코트 */
+  .hero{text-align:center;margin-bottom:16px;}
+  .mascot{font-size:60px;line-height:1;filter:drop-shadow(0 6px 10px rgba(255,143,171,.35));animation:bob 2.6s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .hero h1{font-size:24px;margin:6px 0 2px;letter-spacing:-.5px;}
+  .bubble{display:inline-block;background:#fff;border-radius:16px;padding:8px 14px;font-size:13px;color:var(--sub);
+    box-shadow:0 4px 14px rgba(183,156,240,.18);margin-top:8px;position:relative;}
+  .bubble:before{content:'';position:absolute;top:-6px;left:50%;transform:translateX(-50%) rotate(45deg);width:12px;height:12px;background:#fff;border-radius:2px;}
+  /* 탭 */
+  .tabs{display:flex;gap:8px;background:#fff;padding:6px;border-radius:18px;box-shadow:0 6px 18px rgba(183,156,240,.15);margin-bottom:18px;}
+  .tab{flex:1;text-align:center;padding:11px 3px;border-radius:14px;font-weight:800;font-size:13px;color:var(--sub);cursor:pointer;transition:.2s;white-space:nowrap;}
+  .tab.on{background:linear-gradient(135deg,var(--pink),var(--lav));color:#fff;box-shadow:0 6px 14px rgba(255,143,171,.35);}
+  /* 카드/폼 */
+  .card{background:#fff;border-radius:22px;padding:22px;box-shadow:0 10px 30px rgba(183,156,240,.16);margin-bottom:16px;}
+  .card h3{margin:0 0 14px;font-size:16px;display:flex;align-items:center;gap:8px;}
+  .card h3 .em{font-size:19px;}
+  .card h3 .sm{font-weight:500;color:#b7aac0;font-size:12.5px;margin-left:auto;}
+  label{display:block;margin:0 0 6px;font-weight:700;color:var(--sub);font-size:13px;}
+  input,select{width:100%;padding:12px 13px;border:2px solid var(--line);border-radius:14px;font-size:15px;background:#fdfbff;transition:.15s;}
+  input:focus,select:focus{outline:none;border-color:var(--pink);background:#fff;}
+  .fg{margin-bottom:13px;}
+  .row{display:flex;gap:10px;}.row>div{flex:1;}
+  .person-tag{display:inline-block;font-size:12px;font-weight:800;padding:4px 12px;border-radius:999px;margin-bottom:12px;}
+  .pa{background:var(--pink-s);color:var(--pink-d);}
+  .pb{background:var(--lav-s);color:#7c5fd0;}
+  button.go{width:100%;background:linear-gradient(135deg,var(--pink),var(--lav));color:#fff;border:none;
+    padding:16px;border-radius:16px;font-size:16.5px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(255,143,171,.4);transition:.15s;}
+  button.go:active{transform:scale(.98);}
+  .hidden{display:none;}
+  /* 결과 공통 */
+  .sec{background:#fff;border-radius:22px;padding:20px;box-shadow:0 10px 30px rgba(183,156,240,.14);margin-bottom:14px;}
+  .sec h4{margin:0 0 12px;font-size:15.5px;display:flex;align-items:center;gap:7px;}
+  .sec h4 .em{font-size:18px;}
+  .sec h4 .sm{font-weight:500;color:#b7aac0;font-size:12px;margin-left:auto;}
+  .txt{font-size:14px;line-height:1.75;color:#6b5c72;}
+  .txt b{color:var(--ink);}
+  .tag{display:inline-block;background:var(--cream);border:1.5px solid #f3ead9;border-radius:999px;padding:4px 11px;font-size:12px;margin:3px 4px 0 0;color:#a58b5e;font-weight:700;}
+  .tag.good{background:var(--mint-s);border-color:#cdeede;color:#3ba576;}
+  .tag.warn{background:#fff0f0;border-color:#ffdada;color:#e06a6a;}
+  /* 사주 기둥 */
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;}
+  .pillar .pl{font-size:11px;color:var(--sub);margin-bottom:6px;font-weight:700;}
+  .gz{border-radius:14px;padding:9px 3px;color:#fff;font-weight:800;line-height:1.25;}
+  .gz .h{font-size:23px;}.gz .k{font-size:11px;opacity:.92;}
+  .gz.stem{margin-bottom:5px;}
+  .el-목{background:var(--wood)}.el-화{background:var(--fire)}.el-토{background:var(--earth)}
+  .el-금{background:var(--metal)}.el-수{background:var(--water)}
+  /* 오행바 */
+  .bar{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+  .bar .n{width:52px;font-weight:800;font-size:13px;}
+  .bar .t{flex:1;background:#f2ecf6;border-radius:8px;height:15px;overflow:hidden;}
+  .bar .f{height:100%;border-radius:8px;transition:width .6s;}
+  .bar .c{width:24px;text-align:right;color:var(--sub);font-size:12px;}
+  /* 점수 배지 */
+  .scorebox{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+  .badge{flex:0 0 auto;width:100px;height:100px;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;box-shadow:0 8px 20px rgba(0,0,0,.12);}
+  .badge .num{font-size:30px;font-weight:900;line-height:1;}
+  .badge .lb{font-size:12px;margin-top:3px;font-weight:700;opacity:.95;}
+  .scorebox .bd{flex:1;min-width:200px;}
+  .hearts{font-size:18px;letter-spacing:1px;}
+  /* 분야별 카드 */
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;}
+  .mini{background:#fdfbff;border:2px solid var(--line);border-radius:16px;padding:13px;}
+  .mini .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+  .mini .nm{font-weight:800;font-size:14px;}.mini .sc{font-weight:900;font-size:15px;}
+  .mini .st{font-size:13px;margin-bottom:5px;}
+  .mini .ds{font-size:12.5px;line-height:1.55;color:#7b6c82;}
+  /* 궁합 두 사람 요약 */
+  .duo{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;text-align:center;}
+  .who{background:#fdfbff;border:2px solid var(--line);border-radius:16px;padding:12px 6px;}
+  .who .av{font-size:30px;}.who .nn{font-weight:800;font-size:14px;margin:4px 0 2px;}
+  .who .ilju{display:inline-block;font-size:12px;color:#fff;padding:3px 9px;border-radius:999px;font-weight:800;}
+  .heart-mid{font-size:26px;animation:beat 1.3s ease-in-out infinite;}
+  @keyframes beat{0%,100%{transform:scale(1)}30%{transform:scale(1.25)}}
+  .lucky{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;text-align:center;}
+  .lucky .it{background:#fdfbff;border:2px solid var(--line);border-radius:16px;padding:12px 4px;}
+  .lucky .it .k{font-size:11.5px;color:var(--sub);font-weight:700;}
+  .lucky .it .v{font-size:15px;font-weight:900;margin-top:3px;}
+  details{background:#fff;border-radius:18px;padding:2px 18px;box-shadow:0 6px 18px rgba(183,156,240,.12);margin-bottom:14px;}
+  summary{cursor:pointer;padding:14px 0;font-weight:800;font-size:14.5px;list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  .warnbox{font-size:12px;color:#c96;background:#fffaf0;border:1.5px solid #ffe6b0;border-radius:12px;padding:9px 11px;margin:4px 0 12px;line-height:1.5;}
+  button.ai{width:100%;background:var(--ink);color:#fff;border:none;padding:13px;border-radius:14px;font-weight:800;cursor:pointer;margin:4px 0 12px;}
+  button.ai:disabled{opacity:.5;}
+  #aiOut{white-space:pre-wrap;font-size:14px;line-height:1.8;color:#6b5c72;}
+  .note{font-size:11.5px;color:#b7aac0;text-align:center;margin-top:14px;line-height:1.7;}
+  /* 채팅 */
+  .chat-log{background:#faf6ff;border:2px solid var(--line);border-radius:16px;padding:12px;min-height:200px;max-height:360px;overflow-y:auto;margin-bottom:10px;}
+  .cmsg{max-width:82%;padding:9px 13px;border-radius:16px;margin-bottom:8px;font-size:14px;line-height:1.6;white-space:pre-wrap;word-break:break-word;}
+  .cmsg.user{background:linear-gradient(135deg,var(--pink),var(--lav));color:#fff;margin-left:auto;border-bottom-right-radius:5px;}
+  .cmsg.bot{background:#fff;color:#6b5c72;border:1.5px solid var(--line);border-bottom-left-radius:5px;}
+  .chat-input-row{display:flex;gap:8px;}
+  .chat-input-row input{flex:1;}
+  .chat-send{background:linear-gradient(135deg,var(--pink),var(--lav));color:#fff;border:none;border-radius:14px;width:54px;font-size:18px;font-weight:800;cursor:pointer;}
+  .chip-row{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;}
+  .chip{background:var(--lav-s);color:#7c5fd0;border:none;border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:700;cursor:pointer;}
+  .taek .mini{margin-bottom:9px;}
+  .taek .mini.bad{border-color:#ffd6d6;background:#fff6f6;}
+  @media print{
+    body{background:#fff;padding:0;}
+    .tabs,.card,.hero .bubble,.mascot,.no-print,details{display:none!important;}
+    .hero h1{margin:0 0 10px;}
+    .sec{box-shadow:none;border:1px solid #eee;break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="mascot">🐯</div>
+    <h1>은정도사 🔮</h1>
+    <div class="bubble" id="bubble">어서 오라랑~ 은정도사가 봐주겠다랑! 🔮</div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab on" id="tab-btn-0" onclick="switchTab(0)">🔮 사주</div>
+    <div class="tab" id="tab-btn-1" onclick="switchTab(1)">💑 궁합</div>
+    <div class="tab" id="tab-btn-2" onclick="switchTab(2)">📅 택일</div>
+    <div class="tab" id="tab-btn-3" onclick="switchTab(3)">🐯 질문</div>
+  </div>
+
+  <!-- ===== 탭0: 내 사주 ===== -->
+  <div id="tab-0">
+    <div class="card">
+      <h3><span class="em">🌸</span> 내 정보 입력 <span class="sm">양력 기준</span></h3>
+      <div class="fg"><label>이름 / 별명</label><input type="text" id="me-name" placeholder="이름을 적어줘랑"></div>
+      <div class="row">
+        <div class="fg"><label>생년월일</label><input type="date" id="me-bd" min="1900-01-01" max="2100-12-31"></div>
+        <div class="fg"><label>성별</label><select id="me-gender"><option value="남">남자</option><option value="여">여자</option></select></div>
+      </div>
+      <div class="fg"><label>태어난 시간</label>
+        <select id="me-time">
+          <option value="unknown">몰라요</option>
+          <option value="子">자시 (23:30~01:29)</option><option value="丑">축시 (01:30~03:29)</option>
+          <option value="寅">인시 (03:30~05:29)</option><option value="卯">묘시 (05:30~07:29)</option>
+          <option value="辰">진시 (07:30~09:29)</option><option value="巳">사시 (09:30~11:29)</option>
+          <option value="午">오시 (11:30~13:29)</option><option value="未">미시 (13:30~15:29)</option>
+          <option value="申">신시 (15:30~17:29)</option><option value="酉">유시 (17:30~19:29)</option>
+          <option value="戌">술시 (19:30~21:29)</option><option value="亥">해시 (21:30~23:29)</option>
+        </select>
+      </div>
+      <button class="go" onclick="calcMe()">🐾 내 운세 보기</button>
+    </div>
+    <div id="result-me"></div>
+  </div>
+
+  <!-- ===== 탭1: 커플 궁합 ===== -->
+  <div id="tab-1" class="hidden">
+    <div class="card">
+      <h3><span class="em">💘</span> 두 사람 정보 <span class="sm">양력 기준</span></h3>
+      <span class="person-tag pa">첫 번째 사람 💗</span>
+      <div class="fg"><label>이름 / 별명</label><input type="text" id="a-name" placeholder="예: 나"></div>
+      <div class="row">
+        <div class="fg"><label>생년월일</label><input type="date" id="a-bd" min="1900-01-01" max="2100-12-31"></div>
+        <div class="fg"><label>성별</label><select id="a-gender"><option value="남">남자</option><option value="여">여자</option></select></div>
+      </div>
+      <div class="fg"><label>태어난 시간</label>
+        <select id="a-time">
+          <option value="unknown">몰라요</option>
+          <option value="子">자시</option><option value="丑">축시</option><option value="寅">인시</option><option value="卯">묘시</option>
+          <option value="辰">진시</option><option value="巳">사시</option><option value="午">오시</option><option value="未">미시</option>
+          <option value="申">신시</option><option value="酉">유시</option><option value="戌">술시</option><option value="亥">해시</option>
+        </select>
+      </div>
+      <hr style="border:none;border-top:2px dashed var(--line);margin:16px 0;">
+      <span class="person-tag pb">두 번째 사람 💜</span>
+      <div class="fg"><label>이름 / 별명</label><input type="text" id="b-name" placeholder="예: 상대"></div>
+      <div class="row">
+        <div class="fg"><label>생년월일</label><input type="date" id="b-bd" min="1900-01-01" max="2100-12-31"></div>
+        <div class="fg"><label>성별</label><select id="b-gender"><option value="여">여자</option><option value="남">남자</option></select></div>
+      </div>
+      <div class="fg"><label>태어난 시간</label>
+        <select id="b-time">
+          <option value="unknown">몰라요</option>
+          <option value="子">자시</option><option value="丑">축시</option><option value="寅">인시</option><option value="卯">묘시</option>
+          <option value="辰">진시</option><option value="巳">사시</option><option value="午">오시</option><option value="未">미시</option>
+          <option value="申">신시</option><option value="酉">유시</option><option value="戌">술시</option><option value="亥">해시</option>
+        </select>
+      </div>
+      <button class="go" onclick="calcCouple()">💞 궁합 보기</button>
+    </div>
+    <div id="result-couple"></div>
+  </div>
+
+  <!-- ===== 탭2: 택일 ===== -->
+  <div id="tab-2" class="hidden">
+    <div class="card">
+      <h3><span class="em">📅</span> 좋은 날 잡기 <span class="sm">택일</span></h3>
+      <div class="fg"><label>내 생년월일 (양력)</label><input type="date" id="taek-bd" min="1900-01-01" max="2100-12-31"></div>
+      <div class="row">
+        <div class="fg"><label>무슨 일이에요?</label>
+          <select id="taek-event">
+            <option value="이사">🏠 이사</option><option value="결혼">💍 결혼·상견례</option>
+            <option value="개업">🏪 개업·창업</option><option value="계약">📝 중요한 계약</option>
+            <option value="여행">✈️ 여행·출발</option><option value="시험">📚 시험·면접</option>
+          </select></div>
+        <div class="fg"><label>언제쯤?</label><input type="month" id="taek-ym"></div>
+      </div>
+      <button class="go" onclick="calcTaekil()">🍀 좋은 날 찾기</button>
+    </div>
+    <div id="result-taekil"></div>
+  </div>
+
+  <!-- ===== 탭3: 은정도사에게 물어봐 ===== -->
+  <div id="tab-3" class="hidden">
+    <div class="card">
+      <h3><span class="em">🐯</span> 은정도사에게 물어봐</h3>
+      <div id="chat-log" class="chat-log"></div>
+      <div class="chat-input-row">
+        <input type="text" id="chat-input" placeholder="예: 요즘 연애운 어때?" onkeydown="if(event.key==='Enter')chatSend()">
+        <button class="chat-send" onclick="chatSend()">▶</button>
+      </div>
+      <div class="chip-row" id="chat-chips"></div>
+    </div>
+  </div>
+
+  <p class="note">
+    ※ 절기(절입)를 근사치로 계산하므로 월초·2월 초 경계일 출생자는 오차가 있을 수 있어요.<br>
+    재미로 보는 콘텐츠예요. 중요한 결정의 근거로 삼지 말아줘랑 🐯
+  </p>
+</div>
+
+<script>
+/* ================= 데이터 ================= */
+const STEMS=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const STEMS_KO=['갑','을','병','정','무','기','경','신','임','계'];
+const BRANCH=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const BRANCH_KO=['자','축','인','묘','진','사','오','미','신','유','술','해'];
+const ANIMAL=['쥐','소','호랑이','토끼','용','뱀','말','양','원숭이','닭','개','돼지'];
+const STEM_EL=['목','목','화','화','토','토','금','금','수','수'];
+const BRANCH_EL=['수','토','목','목','토','화','화','토','금','금','토','수'];
+const STEM_YY=['양','음','양','음','양','음','양','음','양','음'];
+const EL_HANJA={목:'木',화:'火',토:'土',금:'金',수:'水'};
+const GEN={목:'화',화:'토',토:'금',금:'수',수:'목'};
+const CON={목:'토',토:'수',수:'화',화:'금',금:'목'};
+const ELS=['목','화','토','금','수'];
+
+/* ================= 만세력 ================= */
+function toJDN(y,m,d){const a=Math.floor((14-m)/12),yy=y+4800-a,mm=m+12*a-3;return d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;}
+const JDN_JIAZI=toJDN(2000,1,7);
+function dayPillar(y,m,d){const i=(((toJDN(y,m,d)-JDN_JIAZI)%60)+60)%60;return {s:i%10,b:i%12};}
+function effYear(y,m,d){return (m<2||(m===2&&d<4))?y-1:y;}
+function yearPillar(y){return {s:((y-4)%10+10)%10,b:((y-4)%12+12)%12};}
+const TERM_DAY={1:6,2:4,3:6,4:5,5:6,6:6,7:7,8:8,9:8,10:8,11:7,12:7};
+function monthOrder(m,d){let o=(m===1)?11:(m-2);if(d<TERM_DAY[m])o=(o+11)%12;return o;}
+function monthPillar(ys,m,d){const o=monthOrder(m,d);const f=((ys%5)*2+2)%10;return {s:(f+o)%10,b:(o+2)%12};}
+function hourPillar(ds,hb){const f=(ds%5)*2%10;return {s:(f+hb)%10,b:hb};}
+function computeChart(y,m,d,ht){
+  const dp=dayPillar(y,m,d),yp=yearPillar(effYear(y,m,d)),mp=monthPillar(yp.s,m,d);
+  const hp=(ht!=='unknown')?hourPillar(dp.s,BRANCH.indexOf(ht)):null;
+  const cnt={목:0,화:0,토:0,금:0,수:0};
+  const add=(s,b)=>{cnt[STEM_EL[s]]++;cnt[BRANCH_EL[b]]++;};
+  add(yp.s,yp.b);add(mp.s,mp.b);add(dp.s,dp.b);if(hp)add(hp.s,hp.b);
+  return {yp,mp,dp,hp,cnt,dayEl:STEM_EL[dp.s],total:hp?8:6};
+}
+
+/* ================= 십성 / 관계 ================= */
+function tenGod(dayEl,el){
+  if(el===dayEl)return '비겁';
+  if(GEN[dayEl]===el)return '식상';
+  if(CON[dayEl]===el)return '재성';
+  if(CON[el]===dayEl)return '관성';
+  if(GEN[el]===dayEl)return '인성';
+}
+const SIXHAP={0:1,1:0,2:11,11:2,3:10,10:3,4:9,9:4,5:8,8:5,6:7,7:6};
+const SAMHAP=[[8,0,4],[2,6,10],[5,9,1],[11,3,7]];
+const HAE=[[0,7],[1,6],[2,5],[3,4],[8,11],[9,10]];
+const PA=[[0,9],[1,4],[2,11],[3,6],[5,8],[10,7]];
+function inSamhap(a,b){return SAMHAP.some(g=>g.includes(a)&&g.includes(b)&&a!==b);}
+function inPairs(list,a,b){return list.some(p=>(p[0]===a&&p[1]===b)||(p[0]===b&&p[1]===a));}
+function branchRel(a,b){if((a+6)%12===b)return '충';if(SIXHAP[a]===b)return '합';return '';}
+
+/* ================= 유사난수(날짜 고정) ================= */
+function hseed(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function rand01(s){return (hseed(s)%10000)/10000;}
+function clamp(n,a,b){return Math.max(a,Math.min(b,n));}
+function stars(sc){const n=clamp(Math.round(sc/20),1,5);return '★'.repeat(n)+'☆'.repeat(5-n);}
+function hearts(sc){const n=clamp(Math.round(sc/20),1,5);return '💖'.repeat(n)+'🤍'.repeat(5-n);}
+function band(sc){return sc>=80?3:sc>=65?2:sc>=48?1:0;}
+const BAND_LABEL=['조심','보통','좋음','대길'];
+const BAND_C=['--b0','--b1','--b2','--b3'];
+function bcol(sc){return getComputedStyle(document.documentElement).getPropertyValue(BAND_C[band(sc)]).trim();}
+function gz(p){return STEMS[p.s]+BRANCH[p.b];}
+function gzHTML(s,b){const se=STEM_EL[s],be=BRANCH_EL[b];
+  return `<div class="gz stem el-${se}"><div class="h">${STEMS[s]}</div><div class="k">${STEMS_KO[s]}·${se}</div></div>`+
+         `<div class="gz el-${be}"><div class="h">${BRANCH[b]}</div><div class="k">${BRANCH_KO[b]}·${be}</div></div>`;}
+
+/* ================= 텍스트 뱅크 ================= */
+const DAY_PERSONA={
+  甲:'큰 나무처럼 곧고 추진력이 있어요. 리더 자리를 좋아하고, 한번 정한 방향은 우직하게 밀고 나가는 성격이에요.',
+  乙:'화초·덩굴처럼 유연해요. 섬세하고 현실감각이 좋으며, 부드럽지만 은근한 끈기로 원하는 걸 이뤄내요.',
+  丙:'태양처럼 밝고 열정적이에요. 사교적이고 솔직해서 사람을 끌어당기지만, 가끔 급한 성격만 다스리면 좋아요.',
+  丁:'촛불·별빛 같은 따뜻함이 있어요. 세심하고 헌신적이며, 겉은 차분해도 속엔 뜨거운 열정을 품고 있어요.',
+  戊:'큰 산처럼 듬직하고 포용력이 커요. 믿음직한 중심 역할을 하지만, 가끔 고집이 셀 수 있어요.',
+  己:'기름진 논밭 같은 사람이에요. 실속 있고 자상하며 현실적이라, 주변을 품고 키워주는 힘이 있어요.',
+  庚:'강철·도끼처럼 결단력과 의리가 있어요. 승부욕이 강하고 맺고 끊음이 분명한 시원시원한 성격이에요.',
+  辛:'보석처럼 예리하고 세련됐어요. 완벽주의 기질에 자존심이 높고, 자기관리와 감각이 뛰어나요.',
+  壬:'바다·큰 강 같은 지혜와 포용력이 있어요. 스케일이 크고 자유로우며 융통성과 통찰이 강점이에요.',
+  癸:'이슬·비 같은 총명함과 감성이 있어요. 순수하고 세심하며 상상력과 공감 능력이 뛰어나요.'
+};
+const EL_ADV={
+  목:{color:'초록·청록',dir:'동쪽',act:'독서·성장·기획, 식물 키우기',num:'3, 8'},
+  화:{color:'빨강·주황',dir:'남쪽',act:'운동·사교, 햇빛 쬐기',num:'2, 7'},
+  토:{color:'노랑·베이지',dir:'중앙',act:'규칙적인 생활, 신뢰 쌓기',num:'5, 10'},
+  금:{color:'흰색·은색',dir:'서쪽',act:'정리·계획, 마무리 짓기',num:'4, 9'},
+  수:{color:'검정·파랑',dir:'북쪽',act:'휴식·명상, 물 가까이',num:'1, 6'}
+};
+const YEAR_F={
+  비겁:'<b>비겁</b>의 해 — 동료·경쟁·독립의 기운. 내 주관을 세우기 좋지만 지출·경쟁·인간관계 마찰은 조심해요.',
+  식상:'<b>식상</b>의 해 — 표현·재능·활동의 기운. 새로운 시도와 창작·발표가 빛나요. 말은 살짝 절제하면 좋아요.',
+  재성:'<b>재성</b>의 해 — 재물·기회·현실 성취. 집중하면 결실이 있지만 무리한 투자·욕심은 경계해요.',
+  관성:'<b>관성</b>의 해 — 책임·명예·도전. 승진·시험 같은 중요한 일이 따르나 스트레스 관리가 관건이에요.',
+  인성:'<b>인성</b>의 해 — 귀인·배움·안정. 공부·자격·윗사람 도움이 힘이 돼요. 결단을 미루는 것만 조심.'
+};
+const GOD_P={
+  비겁:'사람·동료와 얽히는 흐름이에요. 협력하면 힘이 되지만 경쟁·지출은 살짝 조심해요.',
+  식상:'말과 아이디어가 잘 풀리는 흐름이에요. 표현하고 움직이면 좋은 반응이 와요.',
+  재성:'재물과 기회의 기운이 도는 흐름이에요. 실속을 챙기되 충동 지출은 자제해요.',
+  관성:'책임과 과제가 따르는 흐름이에요. 성실함이 인정받지만 스트레스 관리가 필요해요.',
+  인성:'귀인과 배움의 기운이 도는 흐름이에요. 도움을 청하고 정리·공부하기 좋아요.'
+};
+const CAT_TEXT={
+  '연애':['감정 소모나 오해가 생기기 쉬워요. 서두르지 말고 상대 입장을 헤아리면 관계가 정리돼요.','큰 변화보다 잔잔한 흐름이에요. 솔직한 대화와 작은 배려가 관계를 데워줘요.','인연의 기운이 살아나요. 적극적으로 표현하면 좋은 만남·진전이 따라와요.','연애·인연운이 활짝! 마음을 여는 만큼 돌아오니 망설이지 말고 다가가 봐요.'],
+  '금전':['지출·손재수를 조심할 때예요. 큰 투자나 보증은 피하고 새는 돈부터 막아요.','들어오고 나가는 게 균형을 이뤄요. 계획적인 소비가 재물을 지켜줘요.','재물운이 상승 곡선이에요. 준비하던 일에 집중하면 실속 있는 결실이 와요.','재물과 기회가 함께 와요. 벌인 일이 돈으로 연결되니 자신 있게!'],
+  '직업':['업무 압박·갈등이 있을 수 있어요. 확장보다 지금 자리를 다지는 게 나아요.','큰 기복 없이 맡은 일을 해내요. 꾸준함이 곧 평판이 돼요.','인정과 기회가 따라와요. 새 역할·프로젝트에 손들어도 좋아요.','성취·승진·확장운이 강해요. 도전할수록 결과가 따라오니 크게 그려봐요.'],
+  '건강':['피로가 쌓이기 쉬워요. 부족한 오행의 장부를 아끼고 무리를 줄여요.','큰 무리는 없지만 관리가 필요해요. 규칙적인 수면과 가벼운 운동을 추천해요.','컨디션이 안정적이에요. 지금 습관을 유지하면 활력이 이어져요.','기력이 왕성해요. 활동적으로 움직이고 새 운동을 시작하기 좋아요.'],
+  '학업':['집중이 흐트러지기 쉬워요. 범위를 좁혀 하나씩 마무리하는 전략이 좋아요.','꾸준히 쌓아가는 때예요. 조급함을 내려놓으면 실력이 붙어요.','배움·문서·자격운이 좋아요. 시험·계약·공부에 좋은 결과가 기대돼요.','머리가 맑고 흡수가 빨라요. 도전적인 목표에 뛰어들기 최적이에요.'],
+  '대인':['사람 때문에 스트레스가 있을 수 있어요. 경계를 분명히 하고 거리 조절이 필요해요.','무난한 관계 흐름이에요. 먼저 안부를 전하는 작은 행동이 관계를 넓혀요.','주변 도움과 인맥이 살아나요. 모임·협업에서 좋은 기운을 얻어요.','사람이 곧 복이 되는 때예요. 적극적으로 어울리면 귀인과 기회가 함께 와요.']
+};
+const CAT_META=[{key:'연애',icon:'💕',god:g=>g==='남'?'재성':'관성'},{key:'금전',icon:'💰',god:()=>'재성'},{key:'직업',icon:'💼',god:()=>'관성'},{key:'건강',icon:'🩺',god:()=>null},{key:'학업',icon:'📚',god:()=>'인성'},{key:'대인',icon:'🤝',god:()=>'비겁'}];
+
+/* ================= 대운 ================= */
+function daeun(y,m,d,gender,yp,mp,dayEl){
+  const yang=STEM_YY[yp.s]==='양';
+  const fwd=(yang&&gender==='남')||(!yang&&gender==='여');   // 양남음녀=순행
+  const jb=toJDN(y,m,d);let days;
+  if(fwd){let nm=m,ny=y;if(d>=TERM_DAY[m]){nm=m+1;if(nm>12){nm=1;ny=y+1;}days=toJDN(ny,nm,TERM_DAY[nm])-jb;}else{days=toJDN(y,m,TERM_DAY[m])-jb;}}
+  else{if(d>=TERM_DAY[m]){days=jb-toJDN(y,m,TERM_DAY[m]);}else{let pm=m-1,py=y;if(pm<1){pm=12;py=y-1;}days=jb-toJDN(py,pm,TERM_DAY[pm]);}}
+  const startAge=Math.max(1,Math.round(days/3));const list=[];
+  for(let k=1;k<=8;k++){const s=fwd?(mp.s+k)%10:((mp.s-k)%10+10)%10;const b=fwd?(mp.b+k)%12:((mp.b-k)%12+12)%12;list.push({age:startAge+(k-1)*10,s,b,god:tenGod(dayEl,STEM_EL[s])});}
+  return {fwd,startAge,list};
+}
+const DAEUN_THEME={비겁:'자립·주도의 10년이에요. 내 힘으로 밀고 나가며 사람들과 경쟁·협력이 활발해요.',식상:'표현·재능의 10년이에요. 하고 싶은 걸 펼치고 결과물을 만들어내는 시기예요.',재성:'재물·현실의 10년이에요. 돈·기회·인연 등 현실적 성취가 커지는 때예요.',관성:'명예·책임의 10년이에요. 사회적 지위가 오르고 중요한 역할을 맡게 돼요.',인성:'배움·안정의 10년이에요. 공부·자격·귀인의 도움으로 내실을 다지는 때예요.'};
+const GOD_BASE={비겁:60,식상:66,재성:68,관성:58,인성:70};
+
+/* ================= 탭 ================= */
+const BUBBLES={0:'어서 오라랑~ 은정도사가 봐주겠다랑! 🔮',1:'두 사람 궁합도 은정도사한테 맡겨라랑! 💑',2:'좋은 날을 콕 골라주겠다랑! 📅',3:'뭐든 물어보라랑~ 🐯'};
+function switchTab(i){
+  for(let k=0;k<4;k++){
+    const t=document.getElementById('tab-'+k);if(t)t.classList.toggle('hidden',k!==i);
+    const b=document.getElementById('tab-btn-'+k);if(b)b.classList.toggle('on',k===i);
+  }
+  document.getElementById('bubble').textContent=BUBBLES[i];
+}
+
+/* ================= 내 사주 ================= */
+function calcMe(){
+  const name=document.getElementById('me-name').value.trim();
+  const bd=document.getElementById('me-bd').value;
+  const gender=document.getElementById('me-gender').value;
+  const ht=document.getElementById('me-time').value;
+  if(!name||!bd){alert('이름과 생년월일을 적어줘랑! 🐯');return;}
+  const [y,m,d]=bd.split('-').map(Number);
+  const C=computeChart(y,m,d,ht);
+  const {yp,mp,dp,hp,cnt,dayEl,total}=C;
+
+  // 십성(일간 제외)
+  const gods={비겁:0,식상:0,재성:0,관성:0,인성:0};
+  [[yp,0],[mp,0],[dp,1],hp?[hp,0]:null].filter(Boolean).forEach(([p,isDay])=>{
+    if(!isDay)gods[tenGod(dayEl,STEM_EL[p.s])]++;gods[tenGod(dayEl,BRANCH_EL[p.b])]++;});
+  const inEl=Object.keys(GEN).find(k=>GEN[k]===dayEl);
+  const support=cnt[dayEl]+cnt[inEl];const strong=support>=total/2;
+  const lacking=ELS.filter(e=>cnt[e]===0);const most=ELS.reduce((a,b)=>cnt[b]>cnt[a]?b:a);
+  const yong=lacking.length?lacking[0]:inEl;
+
+  const now=new Date();const cy=now.getFullYear(),cm=now.getMonth()+1,cd=now.getDate();
+  const cyp=yearPillar(effYear(cy,cm,cd));const yg=tenGod(dayEl,STEM_EL[cyp.s]);
+  const tp=dayPillar(cy,cm,cd);const mpNow=monthPillar(yearPillar(effYear(cy,cm,cd)).s,cm,cd);
+  const dseed=`${bd}|${cy}-${cm}-${cd}`,mseed=`${bd}|${cy}-${cm}`;
+  const period=(pl,seed)=>{const g=tenGod(dayEl,STEM_EL[pl.s]);const base={인성:70,재성:68,식상:66,비겁:60,관성:58}[g];
+    const rel=branchRel(pl.b,dp.b);return {sc:clamp(base+(rel==='합'?10:rel==='충'?-12:0)+Math.round(rand01(seed)*20-10),30,97),g,rel};};
+  const daily=period(tp,dseed+'d'),monthly=period(mpNow,mseed+'m');
+
+  const cats=CAT_META.map(c=>{let sc;
+    if(c.key==='건강'){sc=clamp(74-lacking.length*6-(strong?0:4)+Math.round(rand01(mseed+'건')*16-8),35,96);}
+    else{const g=c.god(gender),nc=gods[g]||0;let base=[50,60,67,72,76][Math.min(nc,4)];if(yg===g)base+=8;base+=Math.round(rand01(mseed+c.key)*16-8);sc=clamp(base,35,97);}
+    return {key:c.key,icon:c.icon,sc,txt:CAT_TEXT[c.key][band(sc)]};});
+
+  // 대운 + 12개월
+  const DU=daeun(y,m,d,gender,yp,mp,dayEl);
+  const age=cy-y;let curDU=null;DU.list.forEach(u=>{if(age>=u.age&&age<u.age+10)curDU=u;});
+  const months=[];for(let mm=1;mm<=12;mm++){const ys=yearPillar(effYear(cy,mm,15)).s;const mk=monthPillar(ys,mm,15);const g=tenGod(dayEl,STEM_EL[mk.s]);const rel=branchRel(mk.b,dp.b);months.push({mm,sc:clamp(GOD_BASE[g]+(rel==='합'?10:rel==='충'?-12:0)+Math.round(rand01(bd+cy+'M'+mm)*16-8),30,97),g});}
+
+  // 렌더
+  const pillars=[hp?['시주·말년',hp]:['시주·모름',null],['일주·나',dp],['월주·사회',mp],['년주·초년',yp]];
+  const pillarsHTML=pillars.map(p=>`<div class="pillar"><div class="pl">${p[0]}</div>${p[1]?gzHTML(p[1].s,p[1].b):'<div class="gz" style="background:#d8cfe0"><div class="h">?</div><div class="k">모름</div></div><div class="gz" style="background:#e8e0ee;color:#b7aac0"><div class="h">?</div></div>'}</div>`).join('');
+  const maxc=Math.max(...ELS.map(e=>cnt[e]),1);
+  const bars=ELS.map(e=>`<div class="bar"><div class="n">${e}(${EL_HANJA[e]})</div><div class="t"><div class="f el-${e}" style="width:${cnt[e]/maxc*100}%"></div></div><div class="c">${cnt[e]}</div></div>`).join('');
+  const bal=lacking.length?lacking.map(e=>`<b>${e}(${EL_HANJA[e]})</b> 부족 → ${EL_ADV[e].color} 색, ${EL_ADV[e].dir}, 「${EL_ADV[e].act}」이 도움돼요.`).join('<br>'):'오행이 고루 갖춰져 균형이 아주 좋아요! 🎉';
+  const badge=(f,label,pl)=>{const col=bcol(f.sc);const rel=f.rel==='합'?' 오늘 기운과 <b>합(合)</b>이라 인연·협력운이 특히 좋아요.':f.rel==='충'?' 기운과 <b>충(冲)</b>이 일어 변동·충돌 주의, 큰 결정은 미뤄요.':'';
+    return `<div class="scorebox"><div class="badge" style="background:${col}"><div class="num">${f.sc}</div><div class="lb">${BAND_LABEL[band(f.sc)]}</div></div>
+    <div class="bd"><div class="hearts">${stars(f.sc)}</div><p class="txt" style="margin:8px 0 0">${GOD_P[f.g]}${rel}</p>
+    <div style="margin-top:8px"><span class="tag">${label} ${gz(pl)}</span><span class="tag">${f.g}운</span></div></div></div>`;};
+  const catHTML=cats.map(c=>{const col=bcol(c.sc);return `<div class="mini"><div class="hd"><span class="nm">${c.icon} ${c.key}</span><span class="sc" style="color:${col}">${c.sc}</span></div><div class="st" style="color:${col}">${stars(c.sc)}</div><div class="ds">${c.txt}</div></div>`;}).join('');
+  const duHTML=DU.list.map(u=>{const on=curDU&&u.age===curDU.age;const gcol=bcol(GOD_BASE[u.god]);
+    return `<div style="flex:0 0 auto;text-align:center;padding:8px 9px;border-radius:14px;border:2px solid ${on?'var(--pink)':'var(--line)'};background:${on?'var(--pink-s)':'#fdfbff'}"><div style="font-size:11px;color:var(--sub);font-weight:700">${u.age}세</div><div class="gz el-${STEM_EL[u.s]}" style="margin:5px 0;padding:6px 7px"><div class="h" style="font-size:17px">${STEMS[u.s]}${BRANCH[u.b]}</div></div><div style="font-size:11px;font-weight:700;color:${gcol}">${u.god}</div></div>`;}).join('');
+  const duText=curDU?`지금은 <b>${STEMS[curDU.s]}${BRANCH[curDU.b]} 대운</b>(${curDU.age}~${curDU.age+9}세)을 지나고 있어요. ${DAEUN_THEME[curDU.god]}`:`아직 첫 대운(${DU.startAge}세) 전이에요. 인생 초반은 타고난 월주 <b>${gz(mp)}</b>의 기운이 이끌어요.`;
+  const gmon=months.map(x=>{const on=x.mm===cm;const mcol=bcol(x.sc);return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px" title="${x.mm}월 ${x.sc}점"><div style="font-size:9.5px;color:var(--sub)">${x.sc}</div><div style="width:68%;background:${mcol};border-radius:6px 6px 2px 2px;height:${Math.round(x.sc*0.85)}px;${on?'outline:2px solid var(--pink);outline-offset:1px':''}"></div><div style="font-size:10px;font-weight:${on?'800':'600'};color:${on?'var(--pink-d)':'var(--sub)'}">${x.mm}</div></div>`;}).join('');
+
+  document.getElementById('result-me').innerHTML=`
+    <div class="sec"><h4><span class="em">🎴</span> ${name}님의 사주팔자 <span class="sm">${y}.${m}.${d} · ${gender}</span></h4>
+      <div class="pillars">${pillarsHTML}</div>
+      <p class="txt" style="margin:14px 0 0">일간(나) <b>${STEMS[dp.s]}(${STEMS_KO[dp.s]})${STEM_YY[dp.s]}${dayEl}</b> — 사주의 주인공이에요.</p></div>
+    <div class="sec"><h4><span class="em">☀️</span> 오늘의 운세 <span class="sm">${cy}.${cm}.${cd} · 일진 ${gz(tp)}</span></h4>${badge(daily,'오늘',tp)}</div>
+    <div class="sec"><h4><span class="em">🌙</span> 이달의 운세 <span class="sm">${cy}.${cm} · 월건 ${gz(mpNow)}</span></h4>${badge(monthly,'이달',mpNow)}</div>
+    <div class="sec"><h4><span class="em">🌈</span> 분야별 운세</h4><div class="grid2">${catHTML}</div></div>
+    <div class="sec"><h4><span class="em">🐾</span> 타고난 기질</h4><p class="txt">${DAY_PERSONA[STEMS[dp.s]]}</p>
+      <p class="txt" style="margin-top:10px">${strong?`나를 돕는 기운이 <b>${support}개</b>로 넉넉한 <b>신강</b>! 주관·추진력이 강점이에요. 베풀고 활동하며 기운을 밖으로 쓰면 좋아요.`:`나를 돕는 기운이 <b>${support}개</b>로 살짝 부족한 <b>신약</b>. 협력·배움·휴식으로 나를 채우는 전략이 잘 맞아요.`}</p></div>
+    <div class="sec"><h4><span class="em">⚖️</span> 오행 분포</h4>${bars}
+      <p class="txt" style="margin-top:12px">가장 강한 기운은 <b>${most}(${EL_HANJA[most]})</b> ${cnt[most]}개예요.</p>
+      <p class="txt" style="margin-top:6px">${bal}</p></div>
+    <div class="sec"><h4><span class="em">🎊</span> ${cy}년(${gz(cyp)}년) 세운</h4><p class="txt">${YEAR_F[yg]}</p>
+      <div style="margin-top:10px"><span class="tag">일간 ${dayEl}</span><span class="tag">올해 ${STEM_EL[cyp.s]}</span><span class="tag">→ ${yg}운</span></div></div>
+    <div class="sec"><h4><span class="em">🧭</span> 대운 (10년 큰 흐름) <span class="sm">${DU.fwd?'순행':'역행'} · ${DU.startAge}세 시작</span></h4>
+      <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px">${duHTML}</div>
+      <p class="txt" style="margin-top:12px">${duText}</p></div>
+    <div class="sec"><h4><span class="em">📈</span> ${cy}년 월별 운세 <span class="sm">현재 ${cm}월 강조</span></h4>
+      <div style="display:flex;align-items:flex-end;gap:3px;height:120px;margin-top:6px">${gmon}</div></div>
+    <div class="sec"><h4><span class="em">🍀</span> 행운 아이템 <span class="sm">용신 ${yong}</span></h4>
+      <div class="lucky"><div class="it"><div class="k">행운의 색</div><div class="v" style="font-size:13px">${EL_ADV[yong].color}</div></div>
+      <div class="it"><div class="k">행운의 방향</div><div class="v">${EL_ADV[yong].dir}</div></div>
+      <div class="it"><div class="k">행운의 숫자</div><div class="v">${EL_ADV[yong].num}</div></div></div></div>
+    <div class="no-print" style="display:flex;gap:8px;margin:2px 0 14px">
+      <button class="ai" style="flex:1;background:var(--pink-d);margin:0" onclick="saveMeImage()">🖼 이미지</button>
+      <button class="ai" style="flex:1;background:var(--lav);margin:0" onclick="copyResult('result-me')">📋 복사</button>
+      <button class="ai" style="flex:1;background:var(--mint);margin:0" onclick="printResult()">🖨 인쇄</button></div>
+    <details class="no-print"><summary>🤖 Claude AI 심층 풀이 받기 ▾</summary>
+      <button class="ai" onclick='requestAI(${JSON.stringify({name,gender,birth:`${y}.${m}.${d}`,time:ht==='unknown'?'모름':ht+'시',saju:`${gz(yp)} ${gz(mp)} ${gz(dp)} ${hp?gz(hp):'미상'}`,ilgan:`${STEMS[dp.s]}(${dayEl})`,ohaeng:`목${cnt.목} 화${cnt.화} 토${cnt.토} 금${cnt.금} 수${cnt.수}`,year:`${cy} ${gz(cyp)}(${yg})`,today:`${daily.sc}(${daily.g})`,month:`${monthly.sc}(${monthly.g})`,cats:cats.map(c=>c.key+c.sc).join(",")})})'>AI 풀이 생성</button>
+      <div id="aiOut"></div></details>`;
+  window._me={name,gender,birth:`${y}.${m}.${d}`,
+    pillars:[hp?[hp.s,hp.b]:null,[dp.s,dp.b],[mp.s,mp.b],[yp.s,yp.b]],labels:['시주','일주','월주','년주'],
+    dayGz:gz(dp),dayEl,today:{sc:daily.sc,lb:BAND_LABEL[band(daily.sc)]},
+    cats:cats.map(c=>({k:c.key,sc:c.sc})),lucky:{color:EL_ADV[yong].color,dir:EL_ADV[yong].dir,num:EL_ADV[yong].num},
+    year:`${cy} ${gz(cyp)} · ${yg}운`};
+  saveInputs();
+  document.getElementById('result-me').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ================= 커플 궁합 ================= */
+function stemRelation(sa,sb){
+  const ea=STEM_EL[sa],eb=STEM_EL[sb];
+  if(Math.abs(sa-sb)===5)return {sc:96,type:'천간합(天干合)',lead:'mutual',desc:'두 사람의 본질(일간)이 천간합을 이뤄요. 자석처럼 서로를 끌어당기는, 보기만 해도 설레는 인연이에요. 💫'};
+  if(Math.abs(sa-sb)===6)return {sc:58,type:'천간충(天干沖)',lead:'both',desc:'두 일간이 팽팽히 맞서는 충의 기운. 불꽃 튀는 매력이 있지만 자존심 싸움은 금물! 한 발씩 양보하면 오히려 단단해져요.'};
+  if(ea===eb)return {sc:80,type:'비화(比和)',lead:'mutual',desc:'같은 오행이라 취향·속도가 잘 맞아요. 편한 친구 같은 사이지만, 너무 닮아 가끔 부딪히기도 해요.'};
+  if(GEN[ea]===eb)return {sc:88,type:'상생(相生)',lead:'A',desc:'한 사람이 다른 사람을 북돋아 키워주는 생(生)의 관계예요. 다정하게 이끌어주는 따뜻한 궁합! 🌱'};
+  if(GEN[eb]===ea)return {sc:88,type:'상생(相生)',lead:'B',desc:'한 사람이 다른 사람을 북돋아 키워주는 생(生)의 관계예요. 서로 기대며 함께 자라나는 사이. 🌱'};
+  if(CON[ea]===eb)return {sc:66,type:'상극(相剋)',lead:'A',desc:'한쪽이 주도권을 쥐고 이끄는 극(剋)의 관계예요. 균형만 맞으면 든든하지만 배려가 필요해요.'};
+  if(CON[eb]===ea)return {sc:66,type:'상극(相剋)',lead:'B',desc:'한쪽이 주도권을 쥐고 이끄는 극(剋)의 관계예요. 존중이 있으면 안정적인 커플이에요.'};
+  return {sc:72,type:'중립',lead:'mutual',desc:'무난하게 어울리는 관계예요.'};
+}
+function branchHarmony(a,b,spouse){
+  const w=spouse?'배우자 자리':'궁';
+  if(a===b)return {sc:78,type:'동주(同)',desc:`${w}가 같아 생활 리듬·가치관이 비슷해요. 편안하지만 새로움은 스스로 만들어야 해요.`};
+  if((a+6)%12===b)return {sc:52,type:'충(沖)',desc:`${w}끼리 충이라 티격태격·변동이 잦을 수 있어요. 대화로 풀면 오히려 서로를 이해하며 성장해요.`};
+  if(SIXHAP[a]===b)return {sc:95,type:'육합(六合)',desc:`${w}가 육합! 자연스럽게 마음이 통하고 안정감을 주는 최고의 조합이에요. 💞`};
+  if(inSamhap(a,b))return {sc:90,type:'삼합(三合)',desc:`삼합 인연으로 손발이 척척, 함께일수록 시너지가 나요.`};
+  if(inPairs(HAE,a,b))return {sc:62,type:'해(害)',desc:`사소한 서운함이 쌓이기 쉬우니 표현을 자주 해요.`};
+  if(inPairs(PA,a,b))return {sc:64,type:'파(破)',desc:`계획이 어긋나는 일이 있을 수 있어요. 유연함이 열쇠예요.`};
+  return {sc:73,type:'평범',desc:`특별한 충돌 없이 무난히 어울려요.`};
+}
+function zodiacHarmony(a,b){
+  const na=ANIMAL[a],nb=ANIMAL[b];
+  if(a===b)return {sc:76,type:'같은 띠',desc:`둘 다 ${na}띠! 통하는 게 많지만 비슷한 고집이 부딪힐 수 있어요.`};
+  if((a+6)%12===b)return {sc:50,type:'충(원진 성향)',desc:`${na}띠와 ${nb}띠는 충 관계라 서로 자극이 세요. 다름을 인정하면 성장의 커플.`};
+  if(SIXHAP[a]===b)return {sc:94,type:'육합 띠',desc:`${na}띠와 ${nb}띠는 육합! 예로부터 찰떡궁합으로 꼽히는 조합이에요.`};
+  if(inSamhap(a,b))return {sc:90,type:'삼합 띠',desc:`${na}띠와 ${nb}띠는 삼합! 서로를 밀어주는 좋은 띠 궁합이에요.`};
+  return {sc:72,type:'무난',desc:`${na}띠와 ${nb}띠는 무난하게 어울리는 사이예요.`};
+}
+function elementComplement(ca,cb){
+  let need=0,fill=0;const filledFor=[];
+  ELS.forEach(e=>{if(ca[e]===0){need++;if(cb[e]>=1){fill++;filledFor.push('B가 A의 '+e);}}});
+  ELS.forEach(e=>{if(cb[e]===0){need++;if(ca[e]>=1){fill++;filledFor.push('A가 B의 '+e);}}});
+  const sc=need===0?82:clamp(Math.round(50+(fill/need)*45),40,97);
+  let desc;
+  if(need===0)desc='두 사람 모두 오행이 고루 갖춰져 각자 자립적이면서도 조화로워요.';
+  else if(fill/need>=0.6)desc='한쪽에 부족한 기운을 상대가 든든히 채워주는 <b>보완형 궁합</b>이에요. 함께 있으면 서로 완전해지는 느낌! 🧩';
+  else if(fill/need>0)desc='일부 기운은 서로 채워주지만, 함께 부족한 부분도 있어요. 그 부분은 둘이 의식적으로 노력하면 좋아요.';
+  else desc='비슷한 기운이 강해 닮은 점이 많아요. 다만 둘 다 부족한 오행이 겹치니 그 영역은 함께 보완해요.';
+  return {sc,desc};
+}
+function calcCouple(){
+  const na=document.getElementById('a-name').value.trim()||'첫번째';
+  const nb=document.getElementById('b-name').value.trim()||'두번째';
+  const bda=document.getElementById('a-bd').value,bdb=document.getElementById('b-bd').value;
+  const ga=document.getElementById('a-gender').value,gb=document.getElementById('b-gender').value;
+  const ta=document.getElementById('a-time').value,tb=document.getElementById('b-time').value;
+  if(!bda||!bdb){alert('두 사람의 생년월일을 모두 적어줘랑! 💑');return;}
+  const [ya,ma,da]=bda.split('-').map(Number),[yb,mb,db]=bdb.split('-').map(Number);
+  const A=computeChart(ya,ma,da,ta),B=computeChart(yb,mb,db,tb);
+
+  const sr=stemRelation(A.dp.s,B.dp.s);
+  const bh=branchHarmony(A.dp.b,B.dp.b,true);
+  const zo=zodiacHarmony(A.yp.b,B.yp.b);
+  const el=elementComplement(A.cnt,B.cnt);
+  const total=clamp(Math.round(sr.sc*0.35+bh.sc*0.30+el.sc*0.20+zo.sc*0.15),35,99);
+
+  const bandTxt=total>=88?'천생연분 ✨':total>=78?'아주 좋은 궁합 💕':total>=68?'좋은 궁합 😊':total>=58?'노력하면 빛나는 궁합 🌱':'서로 많이 배려해야 하는 궁합 🍵';
+  const lead=sr.lead==='A'?`${na}님이 ${nb}님을 다정하게 이끌고 챙겨주는 흐름이에요.`
+            :sr.lead==='B'?`${nb}님이 ${na}님을 다정하게 이끌고 챙겨주는 흐름이에요.`
+            :sr.lead==='both'?'둘 다 주관이 뚜렷해 팽팽하지만, 그만큼 서로에게 자극이 되는 커플이에요.'
+            :'두 사람이 대등하게 서로를 끌어당기는 균형 잡힌 커플이에요.';
+
+  // 장점/주의 태그
+  const good=[],warn=[];
+  if(sr.type.includes('천간합'))good.push('강한 끌림(천간합)');
+  if(sr.type.includes('상생'))good.push('다정한 상생');
+  if(sr.type.includes('천간충'))warn.push('자존심 충돌(천간충)');
+  if(bh.type.includes('육합')||bh.type.includes('삼합'))good.push('안정적인 배우자궁');
+  if(bh.type.includes('충'))warn.push('생활 리듬 충돌');
+  if(zo.type.includes('육합')||zo.type.includes('삼합'))good.push('좋은 띠 궁합');
+  if(zo.type.includes('충'))warn.push('띠 충(자극 강함)');
+  if(el.sc>=80)good.push('오행 보완 최고');
+  if(el.sc<55)warn.push('겹치는 부족 오행');
+  if(!good.length)good.push('무난한 조화');
+  if(!warn.length)warn.push('크게 걱정할 점 없음 🎉');
+
+  // 연애/결혼 조언
+  const loveTip = total>=78?'서로에게 솔직하게 마음을 표현할수록 관계가 깊어져요. 지금의 설렘을 오래 이어갈 좋은 인연이에요.'
+    : total>=62?'좋은 흐름이지만 방심은 금물! 작은 배려와 자주 하는 대화가 관계를 단단하게 만들어요.'
+    : '다른 점이 많은 만큼 서로를 이해하려는 노력이 필요해요. 그 과정을 함께 넘기면 누구보다 단단한 커플이 될 수 있어요.';
+  const marryTip = (bh.type.includes('육합')||bh.type.includes('삼합'))?'배우자 자리가 잘 맞아 결혼·동거 등 함께 사는 생활에서 안정감이 커요.'
+    : bh.type.includes('충')?'함께 살면 생활 습관 차이가 드러날 수 있어요. 집안일·돈 관리 규칙을 미리 정하면 훨씬 편해져요.'
+    : '함께 사는 데 큰 무리는 없어요. 서로의 공간과 리듬을 존중해 주면 오래 편안해요.';
+
+  const dim=(icon,title,r)=>`<div class="mini"><div class="hd"><span class="nm">${icon} ${title}</span><span class="sc" style="color:${bcol(r.sc)}">${r.sc}</span></div><div class="st" style="color:${bcol(r.sc)}">${stars(r.sc)} <span style="font-size:11px;color:var(--sub)">${r.type}</span></div><div class="ds">${r.desc}</div></div>`;
+
+  const iljuBadge=(C,col)=>`<span class="ilju" style="background:${col}">${gz(C.dp)} · ${ANIMAL[C.yp.b]}띠</span>`;
+  const cctx={na,nb,ga,gb,sa:`${gz(A.dp)}(${STEMS[A.dp.s]}${A.dayEl})`,sb:`${gz(B.dp)}(${STEMS[B.dp.s]}${B.dayEl})`,total,dim:`일간 ${sr.type}(${sr.sc}), 배우자궁 ${bh.type}(${bh.sc}), 오행(${el.sc}), 띠 ${zo.type}(${zo.sc})`};
+
+  document.getElementById('result-couple').innerHTML=`
+    <div class="sec" style="text-align:center;background:linear-gradient(135deg,#fff,#fff6fa);">
+      <h4 style="justify-content:center"><span class="em">💞</span> ${na} 💗 ${nb} 궁합</h4>
+      <div class="scorebox" style="justify-content:center">
+        <div class="badge" style="background:linear-gradient(135deg,var(--pink),var(--lav));width:120px;height:120px">
+          <div class="num" style="font-size:38px">${total}</div><div class="lb">점</div></div>
+        <div class="bd" style="text-align:left"><div class="hearts">${hearts(total)}</div>
+          <p class="txt" style="margin:8px 0 0;font-size:16px;font-weight:800;color:var(--pink-d)">${bandTxt}</p>
+          <p class="txt" style="margin:6px 0 0">${lead}</p></div>
+      </div>
+    </div>
+
+    <div class="sec"><h4><span class="em">👫</span> 두 사람 사주</h4>
+      <div class="duo">
+        <div class="who"><div class="av">${ga==='남'?'👦':'👧'}</div><div class="nn">${na}</div>${iljuBadge(A,'var(--pink)')}</div>
+        <div class="heart-mid">💗</div>
+        <div class="who"><div class="av">${gb==='남'?'👦':'👧'}</div><div class="nn">${nb}</div>${iljuBadge(B,'var(--lav)')}</div>
+      </div>
+      <p class="txt" style="margin:12px 0 0;text-align:center">${na}님은 <b>${STEMS[A.dp.s]}${A.dayEl}</b> 일간, ${nb}님은 <b>${STEMS[B.dp.s]}${B.dayEl}</b> 일간이에요.</p>
+    </div>
+
+    <div class="sec"><h4><span class="em">🔬</span> 궁합 상세 분석</h4>
+      <div class="grid2">
+        ${dim('💗','일간 케미',sr)}
+        ${dim('🏠','배우자궁',bh)}
+        ${dim('⚖️','오행 케미',el)}
+        ${dim('🐭','띠 궁합',zo)}
+      </div>
+      <p class="txt" style="margin-top:12px;font-size:12px;color:var(--sub)">※ 일간 35% · 배우자궁 30% · 오행 20% · 띠 15% 가중 평균으로 종합했어요.</p>
+    </div>
+
+    <div class="sec"><h4><span class="em">🌟</span> 관계 스타일</h4>
+      <p class="txt">${sr.desc}</p>
+      <p class="txt" style="margin-top:8px">${lead}</p></div>
+
+    <div class="sec"><h4><span class="em">💚</span> 이런 점이 좋아요</h4>
+      <div>${good.map(t=>`<span class="tag good">👍 ${t}</span>`).join('')}</div>
+      <p class="txt" style="margin-top:12px">${el.desc}</p></div>
+
+    <div class="sec"><h4><span class="em">💛</span> 이런 점은 조심해요</h4>
+      <div>${warn.map(t=>`<span class="tag warn">⚠️ ${t}</span>`).join('')}</div>
+      <p class="txt" style="margin-top:12px">${bh.desc}</p></div>
+
+    <div class="sec"><h4><span class="em">💌</span> 연애 & 결혼 조언</h4>
+      <p class="txt"><b>💕 연애할 때</b> — ${loveTip}</p>
+      <p class="txt" style="margin-top:10px"><b>💍 함께 산다면</b> — ${marryTip}</p>
+      <p class="txt" style="margin-top:10px"><b>🗣 대화 팁</b> — ${zo.desc} 다른 점은 틀림이 아니라 다름! 서로의 결을 존중해 주면 궁합 점수보다 훨씬 좋은 커플이 될 수 있어요. 🐯💕</p>
+    </div>
+    <div class="no-print" style="display:flex;gap:8px;margin:2px 0 14px">
+      <button class="ai" style="flex:1;background:var(--pink-d);margin:0" onclick="saveCoupleImage()">🖼 이미지</button>
+      <button class="ai" style="flex:1;background:var(--lav);margin:0" onclick="copyResult('result-couple')">📋 복사</button>
+      <button class="ai" style="flex:1;background:var(--mint);margin:0" onclick="printResult()">🖨 인쇄</button></div>
+    <details class="no-print"><summary>🤖 은정도사 AI 궁합 심층 풀이 ▾</summary>
+      <button class="ai" onclick='requestCoupleAI(${JSON.stringify(cctx)})'>AI 궁합 풀이 생성</button>
+      <div id="aiOutC"></div></details>`;
+  window._couple={na,nb,total,band:bandTxt,dims:[{k:'일간 케미',sc:sr.sc},{k:'배우자궁',sc:bh.sc},{k:'오행 케미',sc:el.sc},{k:'띠 궁합',sc:zo.sc}]};
+  saveInputs();
+  document.getElementById('bubble').textContent='둘이 잘 어울린다랑~ 💕';
+  document.getElementById('result-couple').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ================= AI (서버 백엔드 경유 — 방문자는 키 불필요) ================= */
+function requestAI(ctx){
+  const prompt=`당신은 '은정도사'라는 이름의, 따뜻하고 귀여운 말투를 쓰는 호랑이 도사입니다. 아래 계산된 사주를 바탕으로 한국어로 친근하지만 알맹이 있게 풀이해 주세요. ①타고난 성향 ②올해·이달·오늘 흐름 ③연애·금전·직업·건강 조언 순서로 6~8문단.
+이름:${ctx.name}(${ctx.gender}) 생일:${ctx.birth} ${ctx.time}
+사주:${ctx.saju} 일간:${ctx.ilgan} 오행:${ctx.ohaeng}
+올해:${ctx.year} 오늘/이달:${ctx.today}/${ctx.month} 분야점수:${ctx.cats}`;
+  callClaude(prompt,null,document.getElementById('aiOut'),event.target);
+}
+function requestCoupleAI(ctx){
+  const prompt=`당신은 '은정도사'라는 이름의, 따뜻하고 귀여운 말투를 쓰는 호랑이 도사입니다. 아래 두 사람의 사주 궁합을 한국어로 친근하지만 알맹이 있게 풀이해 주세요. ①두 사람 각각의 성향 ②궁합 총평 ③연애할 때 조언 ④결혼·장기관계 조언 ⑤갈등을 줄이는 팁 순서로 6~8문단.
+${ctx.na}(${ctx.ga}) 일주:${ctx.sa}
+${ctx.nb}(${ctx.gb}) 일주:${ctx.sb}
+궁합 종합점수:${ctx.total} / 세부:${ctx.dim}`;
+  callClaude(prompt,null,document.getElementById('aiOutC'),event.target);
+}
+function callClaude(prompt,system,out,btn){
+  btn.disabled=true;out.textContent='🔮 은정도사가 열심히 풀이하는 중...';
+  fetch('/api/ai',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({prompt,system,max_tokens:1600})})
+    .then(r=>r.json()).then(data=>{out.textContent=data.text||('오류: '+(data.error||'응답 없음'));})
+    .catch(e=>{out.textContent='요청 실패: '+e.message;}).finally(()=>{btn.disabled=false;});
+}
+function copyResult(id){const t=document.getElementById(id).innerText;const done=()=>{document.getElementById('bubble').textContent='복사 완료다랑! 📋';};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done).catch(()=>fbCopy(t,done));}else fbCopy(t,done);}
+function fbCopy(t,done){const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');done();}catch(e){alert('복사가 안 돼요 ㅠ');}document.body.removeChild(ta);}
+function printResult(){window.print();}
+
+/* ================= 입력값 자동 저장 ================= */
+const SAVE_IDS=['me-name','me-bd','me-gender','me-time','a-name','a-bd','a-gender','a-time','b-name','b-bd','b-gender','b-time','taek-bd'];
+function saveInputs(){const o={};SAVE_IDS.forEach(id=>{const el=document.getElementById(id);if(el)o[id]=el.value;});try{localStorage.setItem('eunjeong_saju',JSON.stringify(o));}catch(e){}}
+function loadInputs(){try{const o=JSON.parse(localStorage.getItem('eunjeong_saju')||'{}');Object.keys(o).forEach(id=>{const el=document.getElementById(id);if(el&&o[id])el.value=o[id];});}catch(e){}}
+
+/* ================= 택일 ================= */
+const EVENT_TIP={이사:'이사는 나와 충(沖)이 없고, 특히 일지와 육합·삼합을 이루는 날이 편안해요.',결혼:'결혼·상견례는 서로를 생(生)하고 합(合)하는 날이 화목함을 불러와요.',개업:'개업·창업은 재물 기운이 살아나고 충이 없는 날이 길해요.',계약:'중요한 계약은 기운이 안정되고 충·형이 없는 날이 안전해요.',여행:'여행·출발은 충이 없는 순한 날이 무탈해요.',시험:'시험·면접은 머리가 맑고 충이 없는 날에 실력이 잘 나와요.'};
+function taekScore(myS,myEl,myB,dp){
+  let sc=60;const rs=[];const dEl=STEM_EL[dp.s];
+  if(Math.abs(dp.s-myS)===5){sc+=15;rs.push('천간합 🌟');}
+  else if(Math.abs(dp.s-myS)===6){sc-=15;rs.push('천간충 ⚡');}
+  else if(GEN[dEl]===myEl||GEN[myEl]===dEl){sc+=8;rs.push('상생');}
+  else if(CON[dEl]===myEl){sc-=8;rs.push('기운 눌림');}
+  const br=branchRel(dp.b,myB);
+  if(br==='합'){sc+=15;rs.push('일지 육합 💞');}
+  else if(br==='충'){sc-=18;rs.push('일지 충 ⚠️');}
+  else if(inSamhap(dp.b,myB)){sc+=12;rs.push('삼합 🤝');}
+  else if(inPairs(HAE,dp.b,myB)){sc-=8;rs.push('해(害)');}
+  else if(inPairs(PA,dp.b,myB)){sc-=6;rs.push('파(破)');}
+  if(!rs.length)rs.push('무난');
+  return {sc:clamp(sc,10,99),rs};
+}
+function calcTaekil(){
+  const bd=document.getElementById('taek-bd').value;const ev=document.getElementById('taek-event').value;const ym=document.getElementById('taek-ym').value;
+  if(!bd){alert('내 생년월일을 적어줘랑!');return;}
+  if(!ym){alert('언제쯤인지 골라줘랑!');return;}
+  const [by,bm,bdd]=bd.split('-').map(Number);const me=dayPillar(by,bm,bdd);const myEl=STEM_EL[me.s];
+  const [Y,M]=ym.split('-').map(Number);const daysIn=new Date(Y,M,0).getDate();
+  const DOW=['월','화','수','목','금','토','일'];const list=[];
+  for(let dd=1;dd<=daysIn;dd++){const dp=dayPillar(Y,M,dd);const r=taekScore(me.s,myEl,me.b,dp);
+    list.push({dd,dow:DOW[((toJDN(Y,M,dd))%7+7)%7],dp,sc:r.sc,rs:r.rs});}
+  const sorted=[...list].sort((a,b)=>b.sc-a.sc);
+  const good=sorted.slice(0,6);const bad=sorted.filter(x=>x.sc<45).slice(-3).reverse();
+  const card=(x,bad)=>{const col=bcol(x.sc);return `<div class="mini${bad?' bad':''}"><div class="hd"><span class="nm">${M}월 ${x.dd}일 (${x.dow})</span><span class="sc" style="color:${col}">${x.sc}</span></div><div class="st" style="color:${col}">${stars(x.sc)} <span style="font-size:11px;color:var(--sub)">일진 ${gz(x.dp)}</span></div><div class="ds">${x.rs.join(' · ')}</div></div>`;};
+  document.getElementById('result-taekil').innerHTML=`
+    <div class="sec taek"><h4><span class="em">🍀</span> ${Y}년 ${M}월 좋은 날 TOP 6 <span class="sm">${ev}</span></h4>
+      <div class="grid2">${good.map(x=>card(x,false)).join('')}</div>
+      <p class="txt" style="margin-top:12px">${EVENT_TIP[ev]}</p></div>
+    ${bad.length?`<div class="sec taek"><h4><span class="em">🚫</span> 이런 날은 피해요</h4><div class="grid2">${bad.map(x=>card(x,true)).join('')}</div></div>`:''}
+    <div class="sec"><h4><span class="em">💡</span> 참고</h4><p class="txt">내 사주의 일간·일지와 그날 일진의 <b>합·충·생극</b> 관계로 점수를 매겼어요. 실제 택일은 시간(시주)·손없는날 등도 함께 보지만, 일진 궁합만으로도 좋은 흐름의 날을 고를 수 있어요. 🐾</p></div>`;
+  saveInputs();
+  document.getElementById('result-taekil').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* ================= 은정도사 챗봇 ================= */
+const QA=[
+  {k:['연애','사랑','썸','이별','남친','여친','짝사랑','고백','재회'],a:'연애운은 마음을 여는 만큼 들어온다랑 💕 지금은 솔직하게 표현하기 좋은 때야. 조급해하지 말고 자연스럽게 다가가 보라랑. 인연은 준비된 사람에게 온다랑!'},
+  {k:['돈','재물','금전','투자','로또','부자','월급','저축'],a:'재물은 새는 곳을 먼저 막는 게 복이다랑 💰 큰 욕심보다 꾸준함이 돈을 부른다랑. 이번엔 계획적인 소비가 특히 중요하다랑!'},
+  {k:['취업','이직','직장','일','사업','승진','퇴사','면접'],a:'일운은 성실함이 곧 실력이 되는 때다랑 💼 서두른 확장보다 지금 자리를 단단히 다지면 좋은 기회가 온다랑. 준비된 자에게 자리가 열린다랑!'},
+  {k:['건강','아프','병','피곤','스트레스','몸'],a:'몸은 마음의 그릇이다랑 🩺 요즘 무리했다면 잠과 물, 가벼운 산책이 최고의 보약이다랑. 부족한 기운을 채우는 게 핵심이다랑!'},
+  {k:['시험','공부','합격','자격증','수능','시험운'],a:'배움의 기운을 잘 살리면 좋은 결과가 온다랑 📚 범위를 좁혀 하나씩 마무리하고, 아침 시간을 활용하면 집중이 잘 된다랑. 넌 할 수 있다랑!'},
+  {k:['오늘','내일','이번주','운세','하루'],a:'오늘은 마음먹기에 달린 날이다랑 ☀️ 「내 사주」 탭에서 생년월일을 넣으면 오늘의 점수와 일진까지 딱 알려주겠다랑!'},
+  {k:['궁합','결혼','부부','애인'],a:'궁합이 궁금하랑? 💑 「궁합」 탭에서 두 사람 생일을 넣으면 일간 케미·배우자궁·오행·띠까지 아주 자세히 봐주겠다랑!'}
+];
+function localAnswer(q){for(const it of QA){if(it.k.some(k=>q.includes(k)))return it.a;}
+  return '음~ 그건 은정도사가 더 깊이 봐야겠다랑 🔮 「내 사주」 탭에서 생년월일을 넣으면 더 정확히 알려줄 수 있다랑! (위에 API 키를 넣으면 뭐든 대답해줄게 🐯)';}
+let _chatHist=[];
+function addChat(role,text){const log=document.getElementById('chat-log');const div=document.createElement('div');div.className='cmsg '+role;div.textContent=text;log.appendChild(div);log.scrollTop=log.scrollHeight;return div;}
+const CHAT_SYSTEM="당신은 '은정도사'라는 귀엽고 따뜻한 호랑이 사주 도사입니다. 사용자의 질문에 재치있게, 문장 끝에 가끔 '~랑'을 섞어 한국어로 대답하세요. 운세·연애·인생 상담을 잘하되 단정적 예언은 피하고 따뜻한 조언 톤으로. 3~6문장.";
+function chatSend(){
+  const inp=document.getElementById('chat-input');const q=inp.value.trim();if(!q)return;
+  addChat('user',q);inp.value='';
+  _chatHist.push({role:'user',content:q});
+  if(_chatHist.length>12)_chatHist=_chatHist.slice(-12);   // 히스토리 길이 제한(비용 절약)
+  const t=addChat('bot','🔮 ...');
+  fetch('/api/ai',{method:'POST',headers:{'content-type':'application/json'},
+    body:JSON.stringify({messages:_chatHist,system:CHAT_SYSTEM,max_tokens:700})})
+  .then(r=>r.json()).then(d=>{const txt=d.text||('오류: '+(d.error||'응답 없음'));_chatHist.push({role:'assistant',content:txt});t.textContent=txt;document.getElementById('chat-log').scrollTop=1e9;})
+  .catch(e=>{t.textContent='연결 실패다랑 ㅠ '+e.message;});
+}
+const CHAT_CHIPS=['요즘 연애운 어때?','올해 돈 좀 모을 수 있을까?','이직해도 될까?','건강 조심할 거 있어?','오늘 하루 어때?'];
+function chipAsk(t){document.getElementById('chat-input').value=t;chatSend();}
+function initChat(){const box=document.getElementById('chat-chips');box.innerHTML=CHAT_CHIPS.map(c=>`<button class="chip" onclick="chipAsk(this.textContent)">${c}</button>`).join('');
+  if(!document.getElementById('chat-log').children.length)addChat('bot','안녕! 은정도사다랑 🐯 연애·돈·일·건강… 뭐든 편하게 물어보라랑~');}
+
+/* ================= 결과 이미지(PNG) ================= */
+const EL_HEX={목:'#57cf8b',화:'#ff8f6b',토:'#f0c04a',금:'#b9c2cc',수:'#6bb8f0'};
+const BAND_HEX=['#f5a35a','#7fb4ef','#5fcf9a','#ff7a9c'];
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function bh4(sc){return BAND_HEX[sc>=80?3:sc>=65?2:sc>=48?1:0];}
+function makeMeCard(d){
+  const W=600,H=790;let s=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+  s+=`<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0f6"/><stop offset="0.55" stop-color="#f3ecff"/><stop offset="1" stop-color="#eafaf3"/></linearGradient></defs>`;
+  s+=`<rect width="${W}" height="${H}" rx="30" fill="url(#bg)"/>`;
+  s+=`<text x="${W/2}" y="62" font-size="30" text-anchor="middle">🐯</text>`;
+  s+=`<text x="${W/2}" y="100" font-size="26" font-weight="800" text-anchor="middle" fill="#5b4a63">은정도사</text>`;
+  s+=`<text x="${W/2}" y="130" font-size="16" text-anchor="middle" fill="#a294ad">${esc(d.name)}님 · ${esc(d.gender)} · ${esc(d.birth)}</text>`;
+  const px=[110,230,350,470],py=175;
+  d.pillars.forEach((p,i)=>{const x=px[i];
+    s+=`<text x="${x+30}" y="${py-10}" font-size="12" text-anchor="middle" fill="#a294ad">${d.labels[i]}</text>`;
+    if(p){s+=`<rect x="${x}" y="${py}" width="60" height="52" rx="12" fill="${EL_HEX[STEM_EL[p[0]]]}"/><text x="${x+30}" y="${py+35}" font-size="27" font-weight="800" text-anchor="middle" fill="#fff">${STEMS[p[0]]}</text>`;
+      s+=`<rect x="${x}" y="${py+58}" width="60" height="52" rx="12" fill="${EL_HEX[BRANCH_EL[p[1]]]}"/><text x="${x+30}" y="${py+93}" font-size="27" font-weight="800" text-anchor="middle" fill="#fff">${BRANCH[p[1]]}</text>`;}
+    else{s+=`<rect x="${x}" y="${py}" width="60" height="110" rx="12" fill="#d8cfe0"/><text x="${x+30}" y="${py+63}" font-size="26" text-anchor="middle" fill="#fff">?</text>`;}});
+  const tc=bh4(d.today.sc);
+  s+=`<circle cx="128" cy="400" r="54" fill="${tc}"/><text x="128" y="396" font-size="36" font-weight="800" text-anchor="middle" fill="#fff">${d.today.sc}</text><text x="128" y="422" font-size="13" text-anchor="middle" fill="#fff">오늘 ${esc(d.today.lb)}</text>`;
+  s+=`<text x="205" y="378" font-size="17" font-weight="800" fill="#5b4a63">일간 ${esc(d.dayGz)} (${esc(d.dayEl)})</text>`;
+  s+=`<text x="205" y="406" font-size="14" fill="#6b5c72">오늘의 운세 ${d.today.sc}점</text>`;
+  s+=`<text x="205" y="430" font-size="13" fill="#a294ad">${esc(d.year)}</text>`;
+  let by=500;s+=`<text x="55" y="${by-12}" font-size="15" font-weight="800" fill="#5b4a63">분야별 운세</text>`;
+  d.cats.forEach((c,i)=>{const row=Math.floor(i/2),col=i%2;const x=55+col*275;const y=by+row*42;const bc=bh4(c.sc);
+    s+=`<text x="${x}" y="${y+13}" font-size="13" font-weight="700" fill="#6b5c72">${esc(c.k)}</text>`;
+    s+=`<rect x="${x+50}" y="${y+2}" width="150" height="12" rx="6" fill="#eee4f0"/><rect x="${x+50}" y="${y+2}" width="${Math.round(150*c.sc/100)}" height="12" rx="6" fill="${bc}"/>`;
+    s+=`<text x="${x+210}" y="${y+13}" font-size="12" font-weight="800" fill="${bc}">${c.sc}</text>`;});
+  const ly=by+3*42+26;
+  s+=`<rect x="40" y="${ly}" width="520" height="66" rx="16" fill="#ffffff" opacity="0.72"/>`;
+  s+=`<text x="${W/2}" y="${ly+27}" font-size="14" font-weight="800" text-anchor="middle" fill="#5b4a63">🍀 행운 아이템</text>`;
+  s+=`<text x="${W/2}" y="${ly+50}" font-size="13" text-anchor="middle" fill="#6b5c72">색 ${esc(d.lucky.color)}  ·  방향 ${esc(d.lucky.dir)}  ·  숫자 ${esc(d.lucky.num)}</text>`;
+  s+=`<text x="${W/2}" y="${H-22}" font-size="11" text-anchor="middle" fill="#b7aac0">은정도사 · 재미로 보는 사주 🐾</text></svg>`;
+  return s;
+}
+function makeCoupleCard(d){
+  const W=600,H=580;let s=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">`;
+  s+=`<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0f6"/><stop offset="0.55" stop-color="#f3ecff"/><stop offset="1" stop-color="#eafaf3"/></linearGradient>
+    <linearGradient id="pk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff8fab"/><stop offset="1" stop-color="#b79cf0"/></linearGradient></defs>`;
+  s+=`<rect width="${W}" height="${H}" rx="30" fill="url(#bg)"/>`;
+  s+=`<text x="${W/2}" y="60" font-size="28" text-anchor="middle">🐯</text>`;
+  s+=`<text x="${W/2}" y="96" font-size="24" font-weight="800" text-anchor="middle" fill="#5b4a63">은정도사 궁합</text>`;
+  s+=`<text x="${W/2}" y="128" font-size="18" font-weight="700" text-anchor="middle" fill="#ff6f91">${esc(d.na)}  💗  ${esc(d.nb)}</text>`;
+  s+=`<circle cx="${W/2}" cy="228" r="66" fill="url(#pk)"/><text x="${W/2}" y="228" font-size="44" font-weight="800" text-anchor="middle" fill="#fff">${d.total}</text><text x="${W/2}" y="256" font-size="15" text-anchor="middle" fill="#fff">점</text>`;
+  const hn=clamp(Math.round(d.total/20),1,5);s+=`<text x="${W/2}" y="330" font-size="22" text-anchor="middle">${'💖'.repeat(hn)}</text>`;
+  s+=`<text x="${W/2}" y="360" font-size="17" font-weight="800" text-anchor="middle" fill="#ff6f91">${esc(d.band)}</text>`;
+  d.dims.forEach((c,i)=>{const y=392+i*40;const bc=bh4(c.sc);
+    s+=`<text x="80" y="${y+13}" font-size="14" font-weight="700" fill="#6b5c72">${esc(c.k)}</text>`;
+    s+=`<rect x="200" y="${y+2}" width="250" height="13" rx="6" fill="#eee4f0"/><rect x="200" y="${y+2}" width="${Math.round(250*c.sc/100)}" height="13" rx="6" fill="${bc}"/>`;
+    s+=`<text x="${W-70}" y="${y+13}" font-size="13" font-weight="800" fill="${bc}">${c.sc}</text>`;});
+  s+=`<text x="${W/2}" y="${H-20}" font-size="11" text-anchor="middle" fill="#b7aac0">은정도사 · 재미로 보는 궁합 🐾</text></svg>`;
+  return s;
+}
+function downloadPNG(svg,filename){
+  const url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml;charset=utf-8'}));
+  const img=new Image();
+  img.onload=function(){const sc=2;const cv=document.createElement('canvas');cv.width=(img.naturalWidth||600)*sc;cv.height=(img.naturalHeight||600)*sc;
+    const c=cv.getContext('2d');c.scale(sc,sc);c.drawImage(img,0,0);URL.revokeObjectURL(url);
+    try{cv.toBlob(function(b){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=filename;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(()=>URL.revokeObjectURL(a.href),1500);document.getElementById('bubble').textContent='이미지 저장 완료다랑! 🖼';});}
+    catch(e){alert('이미지 저장이 막혔어요 ㅠ 인쇄 기능을 이용해줘랑');}};
+  img.onerror=function(){alert('이미지 생성 실패 ㅠ 인쇄 기능을 이용해줘랑');};
+  img.src=url;
+}
+function saveMeImage(){if(!window._me){alert('먼저 운세를 봐줘랑! 🐯');return;}downloadPNG(makeMeCard(window._me),'은정도사_사주.png');}
+function saveCoupleImage(){if(!window._couple){alert('먼저 궁합을 봐줘랑! 💑');return;}downloadPNG(makeCoupleCard(window._couple),'은정도사_궁합.png');}
+
+/* ================= 초기화 ================= */
+loadInputs();initChat();
+</script>
+</body>
+</html>
