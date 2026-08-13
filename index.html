@@ -14,6 +14,7 @@
   }
   *{box-sizing:border-box}
   body{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+    -webkit-text-size-adjust:100%;text-size-adjust:100%;
     background:linear-gradient(160deg,#fff0f6 0%,#f3ecff 55%,#eafaf3 100%);
     background-attachment:fixed;margin:0;padding:20px 16px 60px;color:var(--ink);}
   .wrap{max-width:600px;margin:0 auto;}
@@ -35,7 +36,10 @@
   .card h3 .em{font-size:19px;}
   .card h3 .sm{font-weight:500;color:#b7aac0;font-size:12.5px;margin-left:auto;}
   label{display:block;margin:0 0 6px;font-weight:700;color:var(--sub);font-size:13px;}
-  input,select{width:100%;padding:12px 13px;border:2px solid var(--line);border-radius:14px;font-size:15px;background:#fdfbff;transition:.15s;}
+  input,select,button{font-family:inherit;}
+  input,select{width:100%;padding:0 14px;border:2px solid var(--line);border-radius:14px;font-size:15px;color:var(--ink);background:#fdfbff;transition:.15s;box-sizing:border-box;height:50px;line-height:normal;}
+  input[type="date"],input[type="month"]{-webkit-appearance:none;appearance:none;}
+  select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23a294ad' d='M1 1l5 5 5-5'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;}
   input:focus,select:focus{outline:none;border-color:var(--pink);background:#fff;}
   .fg{margin-bottom:13px;}
   .row{display:flex;gap:10px;}.row>div{flex:1;}
@@ -115,6 +119,14 @@
   .chip{background:var(--lav-s);color:#7c5fd0;border:none;border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:700;cursor:pointer;}
   .taek .mini{margin-bottom:9px;}
   .taek .mini.bad{border-color:#ffd6d6;background:#fff6f6;}
+  @media(max-width:380px){
+    body{padding:16px 12px 50px;}
+    .card,.sec{padding:16px;}
+    .tab{font-size:12px;padding:10px 2px;}
+    .scorebox{gap:12px;}
+    .badge{width:88px;height:88px;}
+    .badge .num{font-size:26px;}
+  }
   @media print{
     body{background:#fff;padding:0;}
     .tabs,.card,.hero .bubble,.mascot,.no-print,details{display:none!important;}
